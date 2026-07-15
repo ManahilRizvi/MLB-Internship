@@ -101,5 +101,3 @@ All converted outputs are displayed together for comparison.
 - Purpose of different color spaces
 - Manual color conversion
 - Image visualization
-
-# 📁 Project Structure
