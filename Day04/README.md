@@ -1,4 +1,4 @@
-# Day 04 - Image Operations (Manual Implementation)
+# Module 3
 
 This repository contains the manual implementation of fundamental image processing operations using **Python**, **OpenCV**, **NumPy**, and **Matplotlib**.
 
