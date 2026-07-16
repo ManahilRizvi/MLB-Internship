@@ -88,9 +88,15 @@ for i in range(height):
         lab[i, j, 2]=B
 
 #separate images for each LAB channels
-channel_L=lab[:, :, 0]
-channel_A=lab[:, :, 1]
-channel_B=lab[:, :, 2]
+channel_L=np.zeros((height, width), dtype=float)
+channel_A=np.zeros((height, width), dtype=float)
+channel_B=np.zeros((height, width), dtype=float)
+
+for i in range(height):
+    for j in range(width):
+        channel_L[i, j]=lab[i, j, 0]#giving only lightness value to channel L
+        channel_A[i, j]=lab[i, j, 1]#giving only green-red value to channel A
+        channel_B[i, j]=lab[i, j, 2]#giving only blue-yellow value to channel B
 
 plt.figure(figsize=(12, 8))
 plt.subplot(2, 2, 1)
