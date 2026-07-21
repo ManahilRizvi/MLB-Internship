@@ -60,3 +60,9 @@ else:
     
     plt.tight_layout()
     plt.show()
+
+#histogram equalization enhances entire image at once
+#it improves overall contrast but may increase noise
+#CLAHE enhances small regions separately
+#it prevents over enhancement and preserves more details
+#clahe gives better result for dark, bright low contrast
