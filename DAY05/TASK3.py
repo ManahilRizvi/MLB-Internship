@@ -16,19 +16,19 @@ else:
             intensity=int(0.299*red+0.587*green+0.114*blue)
             gray[i][j]=intensity
             
-    histogram=np.zeros(256, dtype=np.uint8)
+    histogram=np.zeros(256, dtype=int)
     for i in range(rows):
         for j in range(columns):
             pixel=gray[i][j]
             histogram[pixel]+=1
             
-    cdf=np.zeros(256, dtype=np.uint8)
+    cdf=np.zeros(256, dtype=int)
     cdf[0]=histogram[0]
     for i in range(1, 256):
         cdf[i]=cdf[i-1]+histogram[i]
         
     totalPix=rows*columns
-    normCdf=np.zeros(256, dtype=np.uint8)
+    normCdf=np.zeros(256, dtype=int)
     for i in range(256):
         n=(cdf[i]*255)/totalPix
         normCdf[i]=int(n)
