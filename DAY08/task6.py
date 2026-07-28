@@ -17,7 +17,7 @@ else:
             rgbImg[i][j][0]=red
             rgbImg[i][j][1]=green
             rgbImg[i][j][2]=blue
-
+#blur image
     kernelBlur=np.ones((3, 3))
     blurImg=np.zeros((rows, columns, channel), dtype=np.uint8)
     for k in range(channel):
@@ -28,7 +28,7 @@ else:
                     for y in range(-1, 2):
                         total+=rgbImg[i+x][j+y][k]*kernelBlur[x+1][y+1]
                 blurImg[i][j][k]=total//9
-
+#again sharpening image
     kernelSharp=np.array([[0, -1, 0],
                          [-1, 5, -1],
                          [0, -1, 0]])
