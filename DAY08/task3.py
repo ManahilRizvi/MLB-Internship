@@ -17,6 +17,8 @@ else:
             rgbImg[i][j][0]=red
             rgbImg[i][j][1]=green
             rgbImg[i][j][2]=blue
+
+    #sharpening image
     kernel=np.array([[0, -1, 0], 
                      [-1, 5, -1],
                      [0, -1, 0]])
