@@ -23,19 +23,19 @@ else:
     saltPepperNoise=rgbImg.copy()
     gaussianNoise=rgbImg.copy()
     probability=0.05
-
+#salt noise
     for i in range(1, rows-1):
         for j in range(1, columns-1):
             if np.random.rand()<probability:
                 for k in range(channel):
                     saltNoise[i][j][k]=255
-
+#pepper noise
     for i in range(1, rows-1):
         for j in range(1, columns-1):
             if np.random.rand()<probability:
                 for k in range(channel):
                     pepperNoise[i][j][k]=0
-
+#salt and pepper noise
     for i in range(1, rows-1):
         for j in range(1, columns-1):
             randomVal=np.random.rand()
@@ -45,7 +45,7 @@ else:
             elif randomVal>(1-probability):
                 for k in range(channel):
                     saltPepperNoise[i][j][k]=255
-
+#gaussian noise
     meanVal=0
     sigmaVal=25
     for i in range(rows):
