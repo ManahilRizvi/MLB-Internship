@@ -20,7 +20,7 @@ else:
     
     noiseImg=rgbImg.copy()
     probability=0.03
-
+#noise image
     for i in range(rows):
         for j in range(columns):
             randomVal=np.random.rand()
@@ -34,7 +34,7 @@ else:
     meanImg=np.zeros((rows, columns, channel), dtype=np.uint8)
     gaussianImg=np.zeros((rows, columns, channel), dtype=np.uint8)
     medianImg=np.zeros((rows, columns, channel), dtype=np.uint8)
-
+#mean image
     kernelMean=np.ones((3, 3))
     for k in range(channel):
         for i in range(1, rows-1):
@@ -44,7 +44,7 @@ else:
                     for y in range(-1, 2):
                         total+=noiseImg[i+x][j+y][k]*kernelMean[x+1][y+1]
                 meanImg[i][j][k]=total//9
-
+#gaussian image
     kernelGau=np.array([[1, 2, 1],
                          [2, 4, 2],
                          [1, 2, 1]])
@@ -56,7 +56,7 @@ else:
                     for y in range(-1, 2):
                         total+=noiseImg[i+x][j+y][k]*kernelGau[x+1][y+1]
                 gaussianImg[i][j][k]=total//16
-
+#median image
     for k in range(channel):
         for i in range(1, rows-1):
             for j in range(1, columns-1):
