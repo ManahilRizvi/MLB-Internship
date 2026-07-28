@@ -17,7 +17,7 @@ else:
             rgbImg[i][j][0]=red
             rgbImg[i][j][1]=green
             rgbImg[i][j][2]=blue
-    
+    #brightness enhancement
     brightnessVal=50
     brighterImg=rgbImg.copy()
 
@@ -30,7 +30,7 @@ else:
                 elif value<0:
                     value=0
                 brighterImg[i][j][k]=value
-
+#contrast enhancement
     alphaVal=1.5
     betaVal=0
     contrastImg=np.zeros((rows, columns, channel), dtype=np.uint8)
@@ -44,7 +44,7 @@ else:
                 elif value<0:
                     value=0
                 contrastImg[i][j][k]=value
-
+#sharpening image
     kernelSharp=np.array([[0, -1, 0], 
                          [-1, 5, -1],
                          [0, -1, 0]])
@@ -62,7 +62,7 @@ else:
                 elif total<0:
                     total=0
                 sharpenImg[i][j][k]=total
-
+#noise image
     noiseImg=rgbImg.copy()
     probability=0.03
 
@@ -75,7 +75,7 @@ else:
             elif randomVal>(1-probability):
                 for k in range(channel):
                     noiseImg[i][j][k]=255
-
+#denoising image
     denoiseImg=np.zeros((rows, columns, channel), dtype=np.uint8)
     for k in range(channel):
         for i in range(1, rows-1):
