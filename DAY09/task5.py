@@ -68,3 +68,16 @@ for image in images:
         level="Blurry Image"
         observation="Edges are not CLEAR"
     print(image, "\t\t", round(blurScore, 2), "\t\t", level, "\t\t", observation)
+
+
+#images with higher variance of laplacian scores contain more edges
+#information that's why they are classified as sharp images.
+#images with lower variance of laplacian scores have fewer edges
+#and details that's why they are classified as blurry images.
+
+#river.jpeg has highest score(1068.55) so it is sharpest imafe
+#clear.jpeg has lowest score(19.83) so it is blurriest image
+#images.jpeg and orange-flower.jpg also have low scores and 
+#classified as blurred images
+#most other images have scores above threshold (100) which indicates good 
+#good edge details.
