@@ -44,41 +44,27 @@ def varianceOfLaplacian(gray):
     variance=variance/product
     return variance
 
+images=["cat.jpeg",
+        "clear.jpeg",
+        "dog.jpg",
+        "images.jpeg",
+        "jpeg_43-2.jpg",
+        "lowCon.jpg",
+        "mouse.jpeg",
+        "orange-flower.jpg",
+        "river.jpeg",
+        "road.jpeg"]
+print("Image Name\Variance of Laplacian Score\tBlur Level (Sharp/Blurry)\tObservation")
+print("---------------------------------------------------------------------------------------------")
 thresholdVal=100
-img=cv2.imread("cat.jpeg", 0)
-if img is None:
-    print("No image...")
-else:
-    blurScore=varianceOfLaplacian(img)
-    print("Grayscale Image")
-    print("Blur Score: ", blurScore)
-    if blurScore>thresholdVal:
-        print("Result: Sharp Image")
-    else:
-        print("Result: Blurry Image")
-
-img=cv2.imread("dog.jpg")
-if img is None:
-    print("No image...")
-else:
+for image in images:
+    img=cv2.imread(image)
     grayImg=rgbToGray(img)
     blurScore=varianceOfLaplacian(grayImg)
-    print("\nDog Image")
-    print("Blur Score: ", blurScore)
     if blurScore>thresholdVal:
-        print("Result: Sharp Image")
+        level="Sharp Image"
+        observation="Edges are CLEAR"
     else:
-        print("Result: Blurry Image")
-
-img=cv2.imread("jpeg_43-2.jpg")
-if img is None:
-    print("No image...")
-else:
-    grayImg=rgbToGray(img)
-    blurScore=varianceOfLaplacian(grayImg)
-    print("\nFlower Image")
-    print("Blur Score: ", blurScore)
-    if blurScore>thresholdVal:
-        print("Result: Sharp Image")
-    else:
-        print("Result: Blurry Image")
+        level="Blurry Image"
+        observation="Edges are not CLEAR"
+    print(image, "\t\t", round(blurScore, 2), "\t\t", level, "\t\t", observation)
