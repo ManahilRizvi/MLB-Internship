@@ -33,16 +33,22 @@ else:
                 grayVal=0
             grayImg[i][j]=grayVal
 
+#generating random gaussian noise and add it to grayscale image
     noise=np.random.normal(0, 20, (rows, columns))
     noiseImg=grayImg.astype(np.float32)+noise
+
+    #keeping pixel values between 0 and 255
     for i in range(rows):
         for j in range(columns):
             if noiseImg[i][j]>255:
                 noiseImg[i][j]=255
             elif noiseImg[i][j]<0:
                 noiseImg[i][j]=0
+
+    #connverting noisy image back to uint8
     noiseImg=noiseImg.astype(np.uint8)
 
+#gaussian filter smooths image and reduces effect of noise
     kernelGauss=[[1, 2, 1],
             [2, 4, 2],
             [1, 2, 1]]
@@ -55,6 +61,8 @@ else:
                 for n in range(-1, 2):
                     pixel=int(noiseImg[i+m][j+n])
                     value+=pixel*kernelGauss[m+1][n+1]
+            #dividing by 16 because sum of gaussian 
+            #kernel is 16
             gaussImg[i][j]=value/16
 
     kernelLap=[[0, 1, 0],
