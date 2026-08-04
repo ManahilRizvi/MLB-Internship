@@ -1,25 +1,36 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-
+#reading input image
 img=cv2.imread("dog.jpg")
-if img is None:
+if img is None:#checking if image is loaded successfully
     print("No image...")
 else:
     rows, columns, channel=img.shape
     grayImg=np.zeros((rows, columns), dtype=np.uint8)
+    #converting rgb img to grayscale 
     for i in range(rows):
         for j in range(columns):
+            #reading blue, green and red values
             blue=img[i][j][0]
             green=img[i][j][1]
             red=img[i][j][2]
+
+            #calculating grayscale intensity using weighted formula
             grayVal=int(0.114*blue+0.587*green+0.299*red)
+
+            #keeping pixel value within valid range
             if grayVal>255:
                 grayVal=255
             elif grayVal<0:
                 grayVal=0
+
+            #storing grayscale value
             grayImg[i][j]=grayVal
 
+#calculating gradient in X direction
+#difference between right and left pixels is used to 
+#detect vertical intensity changes
     gxImg=np.zeros((rows, columns), dtype=np.float32)
     for i in range(1, rows-1):
         for j in range(1, columns-1):
@@ -27,6 +38,9 @@ else:
             rightPix=int(grayImg[i][j+1])
             gxImg[i][j]=rightPix-leftPix
 
+#calculating gradient in Y direction
+#difference between bottom and top pixels is used to detect
+#horizontal intensity changes
     gyImg=np.zeros((rows, columns), dtype=np.float32)
     for i in range(1, rows-1):
         for j in range(1, columns-1):
@@ -34,16 +48,22 @@ else:
             bottomPix=int(grayImg[i+1][j])
             gyImg[i][j]=bottomPix-topPix
 
+#calculating gradient magnitude
+#combine X and Y gradients to measure overall edge strength
     magnitudeImg=np.zeros((rows, columns), dtype=np.float32)
     for i in range(rows):
         for j in range(columns):
             magnitudeImg[i][j]=np.sqrt((gxImg[i][j]**2)+(gyImg[i][j]**2))
 
+#calculating gradient direction 
+#find angle of gradient using arctangent of Gy and Gx
     directionImg=np.zeros((rows, columns), dtype=np.float32)
     for i in range(rows):
         for j in range(columns):
             directionImg[i][j]=np.arctan2(gyImg[i][j], gxImg[i][j])
 
+##normalizing gradient X
+#convert values into range 0 to 255 so they can be displayed as an image
     gxAbs=np.abs(gxImg)
     gxMin=np.min(gxAbs)
     gxMax=np.max(gxAbs)
@@ -54,6 +74,7 @@ else:
                 value=((gxAbs[i][j]-gxMin)/(gxMax-gxMin))*255
                 gxDisplay[i][j]=int(value)
 
+#normalizing gradient Y
     gyAbs=np.abs(gyImg)
     gyMin=np.min(gyAbs)
     gyMax=np.max(gyAbs)
@@ -64,6 +85,7 @@ else:
                 value=((gyAbs[i][j]-gyMin)/(gyMax-gyMin))*255
                 gyDisplay[i][j]=int(value)
 
+#normalizing gradient magnitude
     magMin=np.min(magnitudeImg)
     magMax=np.max(magnitudeImg)
     magDisplay=np.zeros((rows, columns), dtype=np.uint8)
@@ -73,6 +95,8 @@ else:
                 value=((magnitudeImg[i][j]-magMin)/(magMax-magMin))*255
                 magDisplay[i][j]=int(value)
 
+#normalizing gardient direction
+#normalizing direction values only for visualization purpose
     dirMin=np.min(directionImg)
     dirMax=np.max(directionImg)
     dirDisplay=np.zeros((rows, columns), dtype=np.uint8)
