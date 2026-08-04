@@ -33,6 +33,9 @@ else:
                 grayVal=0
             grayImg[i][j]=grayVal
 
+#laplacian kernel 
+#laplacian uses second derivative to detect edges in all 
+#directions
     kernelLap=[[0, 1, 0],
             [1, -4, 1],
             [0, 1, 0]]
@@ -41,13 +44,23 @@ else:
     for i in range(1, rows-1):
         for j in range(1, columns-1):
             value=0
+            #moving over 3x3 neighborhood
             for m in range(-1, 2):
                 for n in range(-1, 2):
                     pixel=int(grayImg[i+m][j+n])
+
+                    #multiplying neighboring pixels with
+                    #laplacian kernel
                     value+=pixel*kernelLap[m+1][n+1]
+
+            #storing laplacian result
             laplacianImg[i][j]=value
 
+#converting negative values into positive because edge responses
+#can be both positive and negative
     laplacianVal=np.abs(laplacianImg)
+
+#normalizing image so that it can be displayed properly
     laplacianDisplay=normalization(laplacianVal)
 
     plt.figure(figsize=(10, 5))
