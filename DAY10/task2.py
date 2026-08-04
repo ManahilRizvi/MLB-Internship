@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+#function to normalize image values between 0 and 255 so 
+#that they can be displayed properly
 def normalization(image):
     image=np.abs(image)
     minVal=np.min(image)
@@ -33,6 +35,9 @@ else:
                 grayVal=0
             grayImg[i][j]=grayVal
 
+#defining sobel kernels
+#sobel X detects vertical edges
+#sobel Y detects horizontal edges
     sobelX=[[-1, 0, 1],
             [-2, 0, 2],
             [-1, 0, 1]]
@@ -47,11 +52,16 @@ else:
         for j in range(1, columns-1):
             sumX=0
             sumY=0
+            #moving over 3x3 neighborhood
             for m in range(-1, 2):
                 for n in range(-1, 2):
                     pixel=int(grayImg[i+m][j+n])
+
+                    #multiplying neighboring pixels with sobel kernels
                     sumX+=pixel*sobelX[m+1][n+1]
                     sumY+=pixel*sobelY[m+1][n+1]
+
+            #storing gradient values
             gxImg[i][j]=sumX
             gyImg[i][j]=sumY
 
