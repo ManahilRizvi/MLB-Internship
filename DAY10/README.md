@@ -30,17 +30,6 @@ An interactive **Gradio interface** is included to allow users to upload an imag
 
 ---
 
-## 📂 Project Structure
-
-```
-DAY09/
-│── gradio_demo.py
-│── dog.jpg
-│── README.md
-```
-
----
-
 ## 📖 Implemented Tasks
 
 ### Task 1 – Image Gradient
@@ -152,5 +141,3 @@ Through this project, I gained practical experience in:
 
 **Manahil Rizvi**
 ---
-
-## ⭐ If you found this project helpful, don't forget to star the repository!
