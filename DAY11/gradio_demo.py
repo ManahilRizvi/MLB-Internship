@@ -564,7 +564,23 @@ with gr.Blocks(title="Image Histogram Processing") as demo:
 
         with gr.Tab("Task 1"):
 
-            gr.Markdown("## Task 1 - Histogram Basics")
+            gr.Markdown("""
+            ## Task 1 : Histogram Basics
+
+            **What is this task?**  
+            This task generates grayscale histograms of different images to analyze the distribution of pixel intensities.
+
+            **What happens in this task?**  
+            The uploaded images are converted to grayscale (if needed), their histograms are calculated manually using NumPy, and both the grayscale images and their histograms are displayed.
+
+            **Input:**  
+            • Two grayscale or RGB images
+
+            **Output:**  
+            • Grayscale versions of the images  
+            • Histogram of each image  
+            • Observations about whether the images are dark, bright, low contrast, or high contrast.
+            """)
 
             with gr.Row():
 
@@ -614,7 +630,23 @@ with gr.Blocks(title="Image Histogram Processing") as demo:
 
         with gr.Tab("Task 2"):
 
-            gr.Markdown("## Task 2 - Grayscale Histogram")
+            gr.Markdown("""
+            ## Task 2 : Grayscale Histogram
+
+            **What is this task?**  
+            This task manually calculates the grayscale histogram of an image.
+
+            **What happens in this task?**  
+            Each pixel intensity from 0 to 255 is counted using NumPy arrays and loops. The frequency of every intensity value is displayed through a histogram.
+
+            **Input:**  
+            • Two grayscale or RGB images
+
+            **Output:**  
+            • Grayscale images  
+            • Histogram plots  
+            • Frequency of pixel intensity values
+            """)
 
             with gr.Row():
 
@@ -669,7 +701,23 @@ with gr.Blocks(title="Image Histogram Processing") as demo:
 
         with gr.Tab("Task 3"):
 
-            gr.Markdown("## Task 3 - RGB Histogram")
+            gr.Markdown("""
+            ## Task 3 : RGB Histogram
+
+            **What is this task?**  
+            This task analyzes the color distribution of RGB images by generating separate histograms for the Red, Green, and Blue channels.
+
+            **What happens in this task?**  
+            The image is separated into individual RGB channels, each channel's histogram is calculated manually, and the three histograms are displayed together for comparison.
+
+            **Input:**  
+            • Two RGB images
+
+            **Output:**  
+            • Original RGB images  
+            • RGB histogram for each image  
+            • Observation about color distribution
+            """)
 
             with gr.Row():
 
@@ -719,7 +767,24 @@ with gr.Blocks(title="Image Histogram Processing") as demo:
 
         with gr.Tab("Task 4"):
 
-            gr.Markdown("## Task 4 - Histogram Equalization")
+            gr.Markdown("""
+            ## Task 4 : Histogram Equalization
+
+            **What is this task?**  
+            This task improves the overall contrast of an image using manual histogram equalization.
+
+            **What happens in this task?**  
+            The histogram and cumulative distribution function (CDF) are calculated manually to create a lookup table that redistributes pixel intensities.
+
+            **Input:**  
+            • One RGB or grayscale image
+
+            **Output:**  
+            • Original grayscale image  
+            • Histogram equalized image  
+            • Original histogram  
+            • Equalized histogram
+            """)
 
             inputImage = gr.Image(
                 type="pil",
@@ -767,7 +832,24 @@ with gr.Blocks(title="Image Histogram Processing") as demo:
 
         with gr.Tab("Task 5"):
 
-            gr.Markdown("## Task 5 - CLAHE")
+            gr.Markdown("""
+            ## Task 5 : CLAHE (Contrast Limited Adaptive Histogram Equalization)
+
+            **What is this task?**  
+            This task enhances local image contrast using a manual implementation of CLAHE.
+
+            **What happens in this task?**  
+            The image is divided into small tiles, histogram equalization is applied separately to each tile, histogram clipping is performed, and the enhanced tiles are combined to produce the final image.
+
+            **Input:**  
+            • Two low-contrast images
+
+            **Output:**  
+            • Original images  
+            • Histogram Equalization results  
+            • CLAHE results  
+            • Histograms for comparison
+            """)
 
             with gr.Row():
 
@@ -851,7 +933,25 @@ with gr.Blocks(title="Image Histogram Processing") as demo:
 
         with gr.Tab("Task 6"):
 
-            gr.Markdown("## Task 6 - Histogram Matching")
+            gr.Markdown("""
+            ## Task 6 : Histogram Matching
+
+            **What is this task?**  
+            This task changes the intensity distribution of a source image so that it resembles a reference image.
+
+            **What happens in this task?**  
+            The histograms and CDFs of both images are calculated manually, a mapping function is created, and the source image is transformed to match the reference histogram.
+
+            **Input:**  
+            • Source image  
+            • Reference image
+
+            **Output:**  
+            • Source image  
+            • Reference image  
+            • Histogram matched image  
+            • Histograms of all three images
+            """)
 
             with gr.Row():
 
@@ -911,7 +1011,26 @@ with gr.Blocks(title="Image Histogram Processing") as demo:
 
         with gr.Tab("Task 7"):
 
-            gr.Markdown("## Task 7 - Final Comparison")
+            gr.Markdown("""
+            ## Task 7 : Final Comparison
+
+            **What is this task?**  
+            This task compares three different image enhancement techniques on multiple images.
+
+            **What happens in this task?**  
+            Histogram Equalization, CLAHE, and Histogram Matching are applied to the uploaded images. Their visual results and histograms are compared to understand the strengths of each method.
+
+            **Input:**  
+            • Two low-contrast images  
+            • One reference image
+
+            **Output:**  
+            • Original images  
+            • Histogram Equalization results  
+            • CLAHE results  
+            • Histogram Matching results  
+            • Histograms for comparison
+            """)
 
             with gr.Row():
 
